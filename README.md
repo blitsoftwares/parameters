@@ -1,6 +1,8 @@
 # parameters
 Pacote para Laravel 5+ de parâmetros de aplicação
 
+**pacote em desenvolvimento**
+
 ## instalação
 
 - Crie uma pasta packages na raíz do projeto
