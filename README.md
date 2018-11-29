@@ -34,6 +34,12 @@ php artisan migrate
 php artisan vendor:publish --provider="Blit\Parameters\Providers\ParametersServiceProviders"
 ```
 
+### Importante
+
+```
+composer dump
+```
+
 ##### Aquivo de configuração
 
 - Veja config/parameters.php
@@ -41,3 +47,4 @@ php artisan vendor:publish --provider="Blit\Parameters\Providers\ParametersServi
 ##### Views
 
 - Veja resources/views/vendor/blit/parameters
+
