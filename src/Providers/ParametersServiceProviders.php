@@ -44,7 +44,7 @@ class ParametersServiceProviders extends ServiceProvider
         /**
          *  PUBLISHES
          */
-        $this->publishes([$this->dir_views => resource_path('views/vendor/blit/parameters')],'blit-parameter-views');
+        $this->publishes([$this->dir_views => resource_path('views/vendor/parameter')],'blit-parameter-views');
         $this->publishes([$this->dir_config . DIRECTORY_SEPARATOR . 'parameters.php'  => config_path('parameters.php')],'blit-parameter-config');
     }
 
