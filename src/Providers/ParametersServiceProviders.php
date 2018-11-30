@@ -1,6 +1,8 @@
 <?php
 namespace Blit\Parameters\Providers;
 
+use Blit\Parameters\Models\Parameter;
+use Blit\Parameters\Observers\ParameterObserver;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,7 +26,7 @@ class ParametersServiceProviders extends ServiceProvider
         $this->dir_views        = __DIR__ . '/../resources/views';
         $this->dir_migration    = __DIR__ . '/../database/migrations';
 
-        $this->mergeConfigFrom($this->dir_config . DIRECTORY_SEPARATOR . 'parameters.php','parameter');
+        $this->mergeConfigFrom($this->dir_config . DIRECTORY_SEPARATOR . 'parameter.php','parameter');
     }
 
     /**
@@ -42,10 +44,16 @@ class ParametersServiceProviders extends ServiceProvider
         $this->loadRoutes();
 
         /**
+         * Observers
+         */
+        Parameter::observe(ParameterObserver::class);
+
+        /**
          *  PUBLISHES
          */
-        $this->publishes([$this->dir_views => resource_path('views/vendor/parameter')],'blit-parameter-views');
-        $this->publishes([$this->dir_config . DIRECTORY_SEPARATOR . 'parameters.php'  => config_path('parameters.php')],'blit-parameter-config');
+        $this->publishes([$this->dir_views => resource_path('views/vendor/parameter')],'blit-parameters-views');
+        $this->publishes([$this->dir_config . DIRECTORY_SEPARATOR . 'parameter.php'  => config_path('parameter.php')],'blit-parameters-config');
+
     }
 
 

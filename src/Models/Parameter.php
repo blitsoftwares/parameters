@@ -25,4 +25,9 @@ class Parameter extends Model
         return $this->belongsTo(ParameterCategory::class,'parameter_category_id');
     }
 
+    public function generateSlug()
+    {
+        return str_slug($this->category->name) . "-" . str_slug($this->name);
+    }
+
 }
