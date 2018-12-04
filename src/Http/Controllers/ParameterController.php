@@ -19,6 +19,11 @@ class ParameterController extends Controller
         return view('parameter::parameters.index', compact('registers'));
     }
 
+    public function lucas()
+    {
+        return view('parameter::parameters.parameters');
+    }
+
     public function create()
     {
         $categories = ParameterCategory::pluck('name','id')->prepend('Selecione',0);
@@ -33,7 +38,7 @@ class ParameterController extends Controller
 
     public function show(Parameter $parameter)
     {
-        //
+        // not used
     }
 
     public function edit(Parameter $parameter)

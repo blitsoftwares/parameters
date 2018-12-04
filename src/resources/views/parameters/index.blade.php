@@ -12,6 +12,7 @@
 
                     <div class="card-body">
                         @include('parameter::parameters.table')
+                        {{ $registers->render() }}
                     </div>
                 </div>
             </div>
