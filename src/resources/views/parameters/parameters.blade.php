@@ -47,7 +47,7 @@
                                                                        onblur="text_value(this)"
                                                                        name="value"
                                                                        id="value_{{$parameter->id}}"
-                                                                       value="{{$parameter->parameterValue->value ? $parameter->parameterValue->value : null }}"
+                                                                       value="{{$parameter->parameterValue ? $parameter->parameterValue->value : null }}"
                                                                        data-id="{{$parameter->id}}">
                                                             @else
                                                                 <input type="checkbox" class="form-control"
@@ -81,7 +81,7 @@
                                                                    onblur="text_value(this)"
                                                                    name="value"
                                                                    id="value_{{$parameter->id}}"
-                                                                   value="{{isset($parameter->parameterValue->value) ? $parameter->parameterValue->value : null }}"
+                                                                   value="{{isset($parameter->parameterValue) ? $parameter->parameterValue->value : null }}"
                                                                    data-id="{{$parameter->id}}">
                                                         @else
                                                             <input type="checkbox"
