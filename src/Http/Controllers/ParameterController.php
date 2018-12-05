@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Blit\Parameters\Http\Requests\ParameterRequest;
 use Blit\Parameters\Models\Parameter;
 use Blit\Parameters\Models\ParameterCategory;
+use Blit\Parameters\Models\ParameterValue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -19,9 +21,10 @@ class ParameterController extends Controller
         return view('parameter::parameters.index', compact('registers'));
     }
 
-    public function lucas()
+    public function adjust()
     {
-        return view('parameter::parameters.parameters');
+        $categories = ParameterCategory::get();
+        return view('parameter::parameters.parameters', compact('categories'));
     }
 
     public function create()
@@ -59,4 +62,22 @@ class ParameterController extends Controller
         return redirect(route('parameters.index'));
     }
 
+    public function updateParameter(Request $request)
+    {
+        $input = $request->all();
+        $tenancy_id = isset(Auth::user()->tenancy_id) ? Auth::user()->tenancy_id : null;
+        $param = ParameterValue::firstOrCreate([
+            'parameter_id' => $input['paramenter_id'],
+            'tenancy_id' => $tenancy_id
+        ]);
+
+        if($param){
+            $param->value = $input['value'];
+            $param->save();
+        }
+
+        return json_encode($param);
+
+
+    }
 }

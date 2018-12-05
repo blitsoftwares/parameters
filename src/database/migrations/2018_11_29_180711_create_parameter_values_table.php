@@ -17,7 +17,8 @@ class CreateParameterValuesTable extends Migration
             $table->increments('id');
             $table->integer('parameter_id');
             $table->integer('tenancy_id')->nullable();
-            $table->string('value');
+            $table->string('value')->nullable();
+
             $table->timestamps();
         });
     }

@@ -30,4 +30,9 @@ class Parameter extends Model
         return str_slug($this->category->name) . "-" . str_slug($this->name);
     }
 
+    public function parameterValue()
+    {
+        return $this->hasOne(ParameterValue::class, 'parameter_id', 'id' );
+    }
+
 }

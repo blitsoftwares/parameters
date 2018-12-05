@@ -3,6 +3,7 @@
 namespace Blit\Parameters\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Blit\Parameters\Http\Requests\ParameterCategoryRequest;
 use Blit\Parameters\Models\ParameterCategory;
 use Illuminate\Http\Request;
 
@@ -21,18 +22,8 @@ class CategoryParameterController extends Controller
         return view('parameter::categories.create');
     }
 
-    public function store(Request $request)
+    public function store(ParameterCategoryRequest $request)
     {
-        $validator = $request->validate([
-            'name' => 'required',
-        ]);
-
-        if (!$validator) {
-            return redirect(route('parametercategories.create'))
-                ->withErrors($validator)
-                ->withInput();
-        }
-
         ParameterCategory::create($request->all());
 
         return redirect(route('parametercategories.index'));
@@ -49,22 +40,10 @@ class CategoryParameterController extends Controller
         return view('parameter::categories.edit', compact('parametercategory'));
     }
 
-    public function update(ParameterCategory $parametercategory, Request $request)
+    public function update(ParameterCategory $parametercategory, ParameterCategoryRequest $request)
     {
-
-        $validator = $request->validate([
-            'name' => 'required',
-        ]);
-
-        if (!$validator) {
-            return redirect(route('parametercategories.edit'))
-                ->withErrors($validator)
-                ->withInput();
-        }
-
         $parametercategory->update($request->all());
         return redirect(route('parametercategories.index'));
-
     }
 
     public function destroy(ParameterCategory $parametercategory)
@@ -77,4 +56,6 @@ class CategoryParameterController extends Controller
     {
         $this->data = ParameterCategory::paginate(config('parameter.per_page'));
     }
+
+
 }

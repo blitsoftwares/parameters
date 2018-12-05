@@ -2,6 +2,8 @@
 namespace Blit\Parameters\Providers;
 
 use Blit\Parameters\Models\Parameter;
+use Blit\Parameters\Models\ParameterCategory;
+use Blit\Parameters\Observers\ParameterCategoryObserver;
 use Blit\Parameters\Observers\ParameterObserver;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -47,6 +49,7 @@ class ParametersServiceProviders extends ServiceProvider
          * Observers
          */
         Parameter::observe(ParameterObserver::class);
+        ParameterCategory::observe(ParameterCategoryObserver::class);
 
         /**
          *  PUBLISHES
